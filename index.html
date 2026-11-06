@@ -1,18 +1,717 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f7f7f3"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Day by day"><title>Day by day</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f7f3">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Day by day">
+<title>Day by day</title>
+
 <style>
-:root{color-scheme:light dark;--bg:#f7f7f3;--surface:#fff;--ink:#262b27;--muted:#6a716b;--line:#e3e8e1;--soft:#f4f7f3;--accent:#346d50;--accentbg:#e7f1e8;--shade:rgba(28,40,30,.08)}
-@media(prefers-color-scheme:dark){:root{--bg:#191d1b;--surface:#222824;--ink:#f2f5f1;--muted:#b2bdb3;--line:#3d4a40;--soft:#29312c;--accent:#a2d3b1;--accentbg:#30483a;--shade:rgba(0,0,0,.2)}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}button{font:inherit;color:inherit}button:focus-visible,input:focus-visible{outline:3px solid #589de0;outline-offset:3px}main{max-width:520px;margin:auto;padding:32px 20px 52px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:33px}.brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;letter-spacing:-.02em}.brandmark{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:#d4e7d4;color:#285d3e;font-size:19px}.saved{color:var(--muted);font-size:13px;display:flex;align-items:center;gap:6px}.saved:before{content:'';background:#69a67b;border-radius:50%;height:7px;width:7px}.eyebrow{font-size:12px;font-weight:750;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin-bottom:7px}h1{font-size:30px;line-height:1.2;letter-spacing:-.045em;margin:0 0 8px}p{margin:0}.intro{color:var(--muted);font-size:15px}.calendar{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 12px 17px;margin-top:24px;box-shadow:0 4px 12px var(--shade)}.monthbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.month-title{font-weight:750;font-size:19px;letter-spacing:-.025em}.month-controls{display:flex;gap:6px}.icon-btn{height:40px;width:40px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font-size:22px;line-height:1;cursor:pointer}.icon-btn:hover{background:var(--soft)}.weekdays,.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}.weekdays{margin-bottom:6px}.weekdays span{text-align:center;color:var(--muted);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}.day,.empty{min-width:0;aspect-ratio:1/1.13}.day{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:2px 0;border:1px solid transparent;border-radius:8px;background:var(--soft);color:var(--ink);font-weight:650;font-size:14px;cursor:pointer;transition:transform .12s,border-color .12s}.day:active{transform:scale(.94)}.day.marked{color:#1c2920}.day.selected{outline:2px solid var(--accent);outline-offset:2px}.day.today:not(.selected){border-color:var(--accent)}.dot{width:7px;height:7px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.18)}.dot-placeholder{height:7px}.calendar-foot{color:var(--muted);font-size:13px;margin-top:15px;display:flex;justify-content:space-between;align-items:center}.today-link{border:0;background:none;color:var(--accent);font-size:13px;font-weight:700;padding:7px 0 7px 10px;cursor:pointer}.editor{margin-top:26px}.section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:14px}.section-head h2{font-size:17px;margin:0;letter-spacing:-.02em}.section-head span{font-size:13px;color:var(--muted)}.toggle{display:flex;gap:4px;background:var(--soft);padding:4px;border-radius:9px;margin-bottom:16px}.toggle button{flex:1;min-height:42px;background:transparent;border:0;border-radius:7px;color:var(--muted);font-weight:650;font-size:14px;cursor:pointer}.toggle button[aria-pressed=true]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px var(--shade)}.colors{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.color{display:flex;align-items:center;text-align:left;gap:8px;min-width:0;min-height:50px;padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);cursor:pointer}.color:hover{border-color:var(--accent)}.swatch{width:21px;height:21px;flex:none;border-radius:6px;border:1px solid rgba(0,0,0,.12)}.color-name{display:block;font-size:14px;font-weight:700;line-height:1.15}.hex{display:block;font-size:14px;line-height:1.4;color:var(--muted);font-weight:500}.clear{width:100%;margin-top:12px;min-height:44px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--muted);font-size:14px;font-weight:650;cursor:pointer}.clear:hover{color:var(--ink);background:var(--soft)}.bottom{margin-top:28px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:13px}.backup{display:flex;gap:16px;margin-top:10px}.backup button,.backup label{border:0;background:none;padding:5px 0;color:var(--accent);font-weight:650;font-size:13px;cursor:pointer}.backup input{position:absolute;width:1px;height:1px;opacity:0}.notice{min-height:20px;margin-top:8px;color:var(--accent)}@media(max-width:360px){main{padding-left:14px;padding-right:14px}.calendar{padding-left:10px;padding-right:10px}.colors{gap:5px}.color{padding:5px;gap:5px}.swatch{width:17px;height:17px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+:root {
+  color-scheme: light dark;
+  --bg: #f7f7f3;
+  --surface: #fff;
+  --ink: #262b27;
+  --muted: #6a716b;
+  --line: #e3e8e1;
+  --soft: #f4f7f3;
+  --accent: #346d50;
+  --shade: rgba(28, 40, 30, .08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #191d1b;
+    --surface: #222824;
+    --ink: #f2f5f1;
+    --muted: #b2bdb3;
+    --line: #3d4a40;
+    --soft: #29312c;
+    --accent: #a2d3b1;
+    --shade: rgba(0, 0, 0, .2);
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button { font: inherit; color: inherit; }
+
+button:focus-visible, input:focus-visible {
+  outline: 3px solid #589de0;
+  outline-offset: 3px;
+}
+
+main {
+  max-width: 520px;
+  margin: auto;
+  padding: 32px 20px 52px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 33px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+
+.brandmark {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: #d4e7d4;
+  color: #285d3e;
+  font-size: 19px;
+}
+
+.saved {
+  color: var(--muted);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.saved:before {
+  content: "";
+  background: #69a67b;
+  border-radius: 50%;
+  height: 7px;
+  width: 7px;
+}
+
+p { margin: 0; }
+
+.calendar {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px 12px 17px;
+  margin-top: 24px;
+  box-shadow: 0 4px 12px var(--shade);
+}
+
+.monthbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.month-title {
+  font-weight: 750;
+  font-size: 19px;
+  letter-spacing: -.025em;
+}
+
+.month-controls { display: flex; gap: 6px; }
+
+.icon-btn {
+  height: 40px;
+  width: 40px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.icon-btn:hover { background: var(--soft); }
+
+.weekdays, .days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 3px;
+}
+
+.weekdays { margin-bottom: 6px; }
+
+.weekdays span {
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.day, .empty {
+  min-width: 0;
+  aspect-ratio: 1/1.13;
+}
+
+.day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 2px 0;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: var(--soft);
+  color: var(--ink);
+  font-weight: 650;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform .12s, border-color .12s;
+}
+
+.day:active { transform: scale(.94); }
+.day.marked { color: #1c2920; }
+.day.selected { outline: 2px solid var(--accent); outline-offset: 2px; }
+.day.today:not(.selected) { border-color: var(--accent); }
+
+.dot {
+  width: 26px;
+  max-width: 70%;
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(20, 30, 20, .3);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .65);
+}
+
+.dot-placeholder { height: 8px; }
+
+.calendar-foot {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.today-link {
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 0 7px 10px;
+  cursor: pointer;
+}
+
+.editor { margin-top: 26px; }
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.section-head h2 {
+  font-size: 17px;
+  margin: 0;
+  letter-spacing: -.02em;
+}
+
+.section-head span { font-size: 13px; color: var(--muted); }
+
+.toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--soft);
+  padding: 4px;
+  border-radius: 9px;
+  margin-bottom: 16px;
+}
+
+.toggle button {
+  flex: 1;
+  min-height: 42px;
+  background: transparent;
+  border: 0;
+  border-radius: 7px;
+  color: var(--muted);
+  font-weight: 650;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.toggle button[aria-pressed=true] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 3px var(--shade);
+}
+
+.colors {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.color {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 8px;
+  min-width: 0;
+  min-height: 50px;
+  padding: 7px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.color:hover { border-color: var(--accent); }
+
+.swatch {
+  width: 21px;
+  height: 21px;
+  flex: none;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, .12);
+}
+
+.color-name {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.hex {
+  display: block;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.clear {
+  width: 100%;
+  margin-top: 12px;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.clear:hover { color: var(--ink); background: var(--soft); }
+
+.bottom {
+  margin-top: 28px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.backup { display: flex; gap: 16px; margin-top: 10px; }
+
+.backup button, .backup label {
+  border: 0;
+  background: none;
+  padding: 5px 0;
+  color: var(--accent);
+  font-weight: 650;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.backup input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.notice { min-height: 20px; margin-top: 8px; color: var(--accent); }
+
+@media (max-width: 360px) {
+  main { padding-left: 14px; padding-right: 14px; }
+  .calendar { padding-left: 10px; padding-right: 10px; }
+  .colors { gap: 5px; }
+  .color { padding: 5px; gap: 5px; }
+  .swatch { width: 17px; height: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
 </style>
 </head>
-<body><main>
-<header class="top"><div class="brand"><span class="brandmark" aria-hidden="true">✳</span> day by day</div><span class="saved" id="saved">Saved on this device</span></header>
-<section class="calendar" aria-label="Calendar"><div class="monthbar"><div class="month-title" id="month"></div><div class="month-controls"><button class="icon-btn" id="prev" aria-label="Previous month">‹</button><button class="icon-btn" id="next" aria-label="Next month">›</button></div></div><div class="weekdays" aria-hidden="true"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div><div class="days" id="days"></div><div class="calendar-foot"><span>One day at a time ✨</span><button class="today-link" id="today">Back to today</button></div></section>
-<section class="editor" aria-label="Color editor"><div class="section-head"><h2 id="selected-label">Choose a day</h2><span id="editor-hint">Pick a color below</span></div><div class="toggle" role="group" aria-label="What to color"><button id="background-mode" aria-pressed="true">Day background</button><button id="dot-mode" aria-pressed="false">Color dot</button></div><div class="colors" id="colors"></div><button class="clear" id="clear">Remove background</button></section>
-<footer class="bottom"><p>Your calendar stays in this browser on this device. Clearing browser data can erase it, so export a backup occasionally.</p><div class="backup"><button id="export">Export backup</button><label>Import backup<input id="import" type="file" accept="application/json,.json" aria-label="Import backup"></label></div><div class="notice" id="notice" aria-live="polite"></div></footer>
-</main><script>
-(()=>{'use strict';const KEY='day-by-day-calendar-v1';const palette=[['Teal','#87CFC0'],['Sky','#91BFEA'],['Lavender','#B8A7E4'],['Mint','#A8DAB5'],['Peach','#E9AE91'],['Rose','#EBA8BB'],['Coral','#F0A29A'],['Lemon','#F1DA88'],['Sand','#D7C4AA']].sort((a,b)=>a[1].localeCompare(b[1]));const $=id=>document.getElementById(id);let data={},mode='background',storageOK=true;try{data=JSON.parse(localStorage.getItem(KEY)||'{}');if(!data||typeof data!=='object'||Array.isArray(data))data={}}catch(e){storageOK=false;$('saved').textContent='Storage unavailable'}let now=new Date(),view=new Date(now.getFullYear(),now.getMonth(),1),selected=key(now);function key(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}function dateFromKey(s){let [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}function say(s){$('notice').textContent=s}function save(){try{localStorage.setItem(KEY,JSON.stringify(data));storageOK=true;$('saved').textContent='Saved on this device'}catch(e){storageOK=false;$('saved').textContent='Could not save';say('Your browser could not save changes. Export a backup if available.')}}function render(){const y=view.getFullYear(),m=view.getMonth();$('month').textContent=new Intl.DateTimeFormat(undefined,{month:'long',year:'numeric'}).format(view);let el=$('days');el.replaceChildren();let offset=(new Date(y,m,1).getDay()+6)%7;for(let i=0;i<offset;i++){let empty=document.createElement('div');empty.className='empty';el.append(empty)}let count=new Date(y,m+1,0).getDate();for(let i=1;i<=count;i++){let date=new Date(y,m,i),k=key(date),entry=data[k]||{},btn=document.createElement('button');btn.className='day'+(k===selected?' selected':'')+(k===key(new Date())?' today':'')+(entry.background?' marked':'');if(entry.background)btn.style.backgroundColor=entry.background;btn.setAttribute('aria-pressed',String(k===selected));const name=c=>palette.find(p=>p[1]===c)?.[0]||'custom';btn.setAttribute('aria-label',new Intl.DateTimeFormat(undefined,{dateStyle:'full'}).format(date)+(entry.background?', '+name(entry.background)+' background':'')+(entry.dot?', '+name(entry.dot)+' dot':''));let n=document.createElement('span');n.textContent=i;let dot=document.createElement('span');dot.className=entry.dot?'dot':'dot-placeholder';if(entry.dot)dot.style.backgroundColor=entry.dot;btn.append(n,dot);btn.addEventListener('click',()=>{selected=k;render()});el.append(btn)}$('selected-label').textContent=new Intl.DateTimeFormat(undefined,{weekday:'short',month:'short',day:'numeric'}).format(dateFromKey(selected));$('background-mode').setAttribute('aria-pressed',String(mode==='background'));$('dot-mode').setAttribute('aria-pressed',String(mode==='dot'));$('clear').textContent=mode==='background'?'Remove background':'Remove dot';$('editor-hint').textContent=mode==='background'?'Choose a background':'Choose a dot color'}function apply(c){data[selected]??={};data[selected][mode]=c;save();render();say('')}let colors=$('colors');palette.forEach(([name,hex])=>{let b=document.createElement('button');b.className='color';b.setAttribute('aria-label',name+' '+hex);let sw=document.createElement('span');sw.className='swatch';sw.style.backgroundColor=hex;let text=document.createElement('span'),n=document.createElement('span'),h=document.createElement('span');n.className='color-name';n.textContent=name;h.className='hex';h.textContent=hex;text.append(n,h);b.append(sw,text);b.addEventListener('click',()=>apply(hex));colors.append(b)});$('background-mode').onclick=()=>{mode='background';render()};$('dot-mode').onclick=()=>{mode='dot';render()};$('clear').onclick=()=>{if(data[selected]){delete data[selected][mode];if(!Object.keys(data[selected]).length)delete data[selected];save()}render();say('')};function move(delta){view=new Date(view.getFullYear(),view.getMonth()+delta,1);selected=key(new Date(view.getFullYear(),view.getMonth(),1));render()}$('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);$('today').onclick=()=>{let d=new Date();view=new Date(d.getFullYear(),d.getMonth(),1);selected=key(d);render()};$('export').onclick=()=>{const blob=new Blob([JSON.stringify({format:'day-by-day-v1',days:data},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='day-by-day-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);say('Backup downloaded.')};$('import').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let parsed=JSON.parse(await f.text());if(parsed.format!=='day-by-day-v1'||!parsed.days||typeof parsed.days!=='object'||Array.isArray(parsed.days))throw Error();let valid={};for(const [k,v] of Object.entries(parsed.days)){if(!/^\d{4}-\d{2}-\d{2}$/.test(k)||!v||typeof v!=='object'||Array.isArray(v))throw Error();let o={};for(const type of ['background','dot']){if(v[type]!==undefined){if(!palette.some(p=>p[1]===v[type]))throw Error();o[type]=v[type]}}if(Object.keys(o).length)valid[k]=o}if(!confirm('Replace the calendar on this device with this backup?'))return;data=valid;save();render();say(storageOK?'Backup restored.':'Could not save the restored backup.')}catch(err){say('This backup could not be read. No changes were made.')}finally{e.target.value=''}};render()})();
-</script></body></html>
+
+<body>
+<main>
+  <header class="top">
+    <div class="brand">
+      <span class="brandmark" aria-hidden="true">✳</span>
+      day by day
+    </div>
+    <span class="saved" id="saved">Saved on this device</span>
+  </header>
+
+  <section class="calendar" aria-label="Calendar">
+    <div class="monthbar">
+      <div class="month-title" id="month"></div>
+      <div class="month-controls">
+        <button class="icon-btn" id="prev" aria-label="Previous month">‹</button>
+        <button class="icon-btn" id="next" aria-label="Next month">›</button>
+      </div>
+    </div>
+
+    <div class="weekdays" aria-hidden="true">
+      <span>Mon</span><span>Tue</span><span>Wed</span>
+      <span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+    </div>
+
+    <div class="days" id="days"></div>
+
+    <div class="calendar-foot">
+      <span>Tap a day to color it</span>
+      <button class="today-link" id="today">Back to today</button>
+    </div>
+  </section>
+
+  <section class="editor" aria-label="Color editor">
+    <div class="section-head">
+      <h2 id="selected-label">Choose a day</h2>
+      <span id="editor-hint">Pick a color below</span>
+    </div>
+
+    <div class="toggle" role="group" aria-label="What to color">
+      <button id="background-mode" aria-pressed="true">Day background</button>
+      <button id="dot-mode" aria-pressed="false">Color label</button>
+    </div>
+
+    <div class="colors" id="colors"></div>
+    <button class="clear" id="clear">Remove background</button>
+  </section>
+
+  <footer class="bottom">
+    <p>
+      Your calendar stays in this browser on this device.
+      Clearing browser data can erase it, so export a backup occasionally.
+    </p>
+    <div class="backup">
+      <button id="export">Export backup</button>
+      <label>
+        Import backup
+        <input id="import" type="file" accept="application/json,.json"
+               aria-label="Import backup">
+      </label>
+    </div>
+    <div class="notice" id="notice" aria-live="polite"></div>
+  </footer>
+</main>
+
+<script>
+(() => {
+  "use strict";
+
+  const KEY = "day-by-day-calendar-v1";
+
+  const palette = [
+    ["Teal", "#45BFA7"],
+    ["Sky", "#5AA9EC"],
+    ["Green", "#64CE83"],
+    ["Lavender", "#A184EB"],
+    ["Sand", "#C7A276"],
+    ["Peach", "#F69263"],
+    ["Pink", "#EF78A2"],
+    ["Coral", "#F2766C"],
+    ["Yellow", "#EBCD51"]
+  ].sort((a, b) => a[1].localeCompare(b[1]));
+
+  // Keep older backups compatible with this version.
+  const legacyColors = [
+    ["Teal", "#87CFC0"],
+    ["Sky", "#91BFEA"],
+    ["Lavender", "#B8A7E4"],
+    ["Mint", "#A8DAB5"],
+    ["Peach", "#E9AE91"],
+    ["Rose", "#EBA8BB"],
+    ["Coral", "#F0A29A"],
+    ["Lemon", "#F1DA88"],
+    ["Sand", "#D7C4AA"]
+  ];
+
+  const $ = id => document.getElementById(id);
+  let data = {};
+  let mode = "background";
+  let storageOK = true;
+
+  try {
+    data = JSON.parse(localStorage.getItem(KEY) || "{}");
+    if (!data || typeof data !== "object" || Array.isArray(data)) data = {};
+  } catch (e) {
+    storageOK = false;
+    $("saved").textContent = "Storage unavailable";
+  }
+
+  let now = new Date();
+  let view = new Date(now.getFullYear(), now.getMonth(), 1);
+  let selected = key(now);
+
+  function key(d) {
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  }
+
+  function dateFromKey(s) {
+    const [y, m, d] = s.split("-").map(Number);
+    return new Date(y, m - 1, d);
+  }
+
+  function say(s) {
+    $("notice").textContent = s;
+  }
+
+  function save() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(data));
+      storageOK = true;
+      $("saved").textContent = "Saved on this device";
+    } catch (e) {
+      storageOK = false;
+      $("saved").textContent = "Could not save";
+      say("Your browser could not save changes. Export a backup if available.");
+    }
+  }
+
+  function render() {
+    const y = view.getFullYear();
+    const m = view.getMonth();
+
+    $("month").textContent = new Intl.DateTimeFormat(undefined, {
+      month: "long",
+      year: "numeric"
+    }).format(view);
+
+    const el = $("days");
+    el.replaceChildren();
+
+    const offset = (new Date(y, m, 1).getDay() + 6) % 7;
+
+    for (let i = 0; i < offset; i++) {
+      const empty = document.createElement("div");
+      empty.className = "empty";
+      el.append(empty);
+    }
+
+    const count = new Date(y, m + 1, 0).getDate();
+
+    for (let i = 1; i <= count; i++) {
+      const date = new Date(y, m, i);
+      const k = key(date);
+      const entry = data[k] || {};
+      const btn = document.createElement("button");
+
+      btn.className =
+        "day" +
+        (k === selected ? " selected" : "") +
+        (k === key(new Date()) ? " today" : "") +
+        (entry.background ? " marked" : "");
+
+      if (entry.background) btn.style.backgroundColor = entry.background;
+
+      btn.setAttribute("aria-pressed", String(k === selected));
+
+      const name = c =>
+        [...palette, ...legacyColors].find(p => p[1] === c)?.[0] || "custom";
+
+      btn.setAttribute(
+        "aria-label",
+        new Intl.DateTimeFormat(undefined, { dateStyle: "full" }).format(date) +
+          (entry.background ? ", " + name(entry.background) + " background" : "") +
+          (entry.dot ? ", " + name(entry.dot) + " label" : "")
+      );
+
+      const number = document.createElement("span");
+      number.textContent = i;
+
+      const label = document.createElement("span");
+      label.className = entry.dot ? "dot" : "dot-placeholder";
+      if (entry.dot) label.style.backgroundColor = entry.dot;
+
+      btn.append(number, label);
+      btn.addEventListener("click", () => {
+        selected = k;
+        render();
+      });
+
+      el.append(btn);
+    }
+
+    $("selected-label").textContent = new Intl.DateTimeFormat(undefined, {
+      weekday: "short",
+      month: "short",
+      day: "numeric"
+    }).format(dateFromKey(selected));
+
+    $("background-mode").setAttribute("aria-pressed", String(mode === "background"));
+    $("dot-mode").setAttribute("aria-pressed", String(mode === "dot"));
+    $("clear").textContent = mode === "background" ? "Remove background" : "Remove label";
+    $("editor-hint").textContent =
+      mode === "background" ? "Choose a background" : "Choose a label color";
+  }
+
+  function apply(color) {
+    data[selected] ??= {};
+    data[selected][mode] = color;
+    save();
+    render();
+    say("");
+  }
+
+  const colors = $("colors");
+
+  palette.forEach(([name, hex]) => {
+    const button = document.createElement("button");
+    button.className = "color";
+    button.setAttribute("aria-label", name + " " + hex);
+
+    const swatch = document.createElement("span");
+    swatch.className = "swatch";
+    swatch.style.backgroundColor = hex;
+
+    const text = document.createElement("span");
+    const colorName = document.createElement("span");
+    const colorHex = document.createElement("span");
+
+    colorName.className = "color-name";
+    colorName.textContent = name;
+    colorHex.className = "hex";
+    colorHex.textContent = hex;
+
+    text.append(colorName, colorHex);
+    button.append(swatch, text);
+    button.addEventListener("click", () => apply(hex));
+    colors.append(button);
+  });
+
+  $("background-mode").onclick = () => {
+    mode = "background";
+    render();
+  };
+
+  $("dot-mode").onclick = () => {
+    mode = "dot";
+    render();
+  };
+
+  $("clear").onclick = () => {
+    if (data[selected]) {
+      delete data[selected][mode];
+      if (!Object.keys(data[selected]).length) delete data[selected];
+      save();
+    }
+    render();
+    say("");
+  };
+
+  function move(delta) {
+    view = new Date(view.getFullYear(), view.getMonth() + delta, 1);
+    selected = key(new Date(view.getFullYear(), view.getMonth(), 1));
+    render();
+  }
+
+  $("prev").onclick = () => move(-1);
+  $("next").onclick = () => move(1);
+
+  $("today").onclick = () => {
+    const d = new Date();
+    view = new Date(d.getFullYear(), d.getMonth(), 1);
+    selected = key(d);
+    render();
+  };
+
+  $("export").onclick = () => {
+    const blob = new Blob(
+      [JSON.stringify({ format: "day-by-day-v1", days: data }, null, 2)],
+      { type: "application/json" }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "day-by-day-backup.json";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    say("Backup downloaded.");
+  };
+
+  $("import").onchange = async e => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    try {
+      const parsed = JSON.parse(await file.text());
+
+      if (
+        parsed.format !== "day-by-day-v1" ||
+        !parsed.days ||
+        typeof parsed.days !== "object" ||
+        Array.isArray(parsed.days)
+      ) throw Error();
+
+      const valid = {};
+
+      for (const [k, value] of Object.entries(parsed.days)) {
+        if (
+          !/^\d{4}-\d{2}-\d{2}$/.test(k) ||
+          !value ||
+          typeof value !== "object" ||
+          Array.isArray(value)
+        ) throw Error();
+
+        const entry = {};
+
+        for (const type of ["background", "dot"]) {
+          if (value[type] !== undefined) {
+            if (![...palette, ...legacyColors].some(p => p[1] === value[type])) {
+              throw Error();
+            }
+            entry[type] = value[type];
+          }
+        }
+
+        if (Object.keys(entry).length) valid[k] = entry;
+      }
+
+      if (!confirm("Replace the calendar on this device with this backup?")) return;
+
+      data = valid;
+      save();
+      render();
+      say(storageOK ? "Backup restored." : "Could not save the restored backup.");
+    } catch (err) {
+      say("This backup could not be read. No changes were made.");
+    } finally {
+      e.target.value = "";
+    }
+  };
+
+  render();
+})();
+</script>
+</body>
+</html>
